@@ -78,10 +78,10 @@ chmod +x ~/.claude/hooks/*.sh
 ### Плагіни
 
 ```bash
-# Встановити з прикладів (якщо опубліковані)
-claude --plugin-dir ./07-plugins/pr-review
-/plugin install devops-automation
-/plugin install documentation
+# Завантажити приклади на один сеанс (з кореня репозиторію)
+claude --plugin-dir ./07-plugins/pr-review \
+  --plugin-dir ./07-plugins/devops-automation \
+  --plugin-dir ./07-plugins/documentation
 ```
 
 ### Контрольні точки
@@ -166,7 +166,7 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 # Спосіб 4: Плагін (найкращий)
 claude --plugin-dir ./07-plugins/pr-review
-# Використання: /review-pr
+# Використання: /pr-review:review-pr
 ```
 
 ### Документація
@@ -182,16 +182,16 @@ cp 04-subagents/documentation-writer.md .claude/agents/
 cp -r 03-skills/doc-generator ~/.claude/skills/
 
 # Плагін (комплексне рішення)
-/plugin install documentation
+claude --plugin-dir ./07-plugins/documentation
 ```
 
 ### DevOps
 
 ```bash
 # Повний плагін
-/plugin install devops-automation
+claude --plugin-dir ./07-plugins/devops-automation
 
-# Команди: /deploy, /rollback, /status, /incident
+# Команди: /devops-automation:deploy, /devops-automation:rollback, /devops-automation:status, /devops-automation:incident
 ```
 
 ### Командні стандарти
@@ -412,9 +412,9 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 claude --plugin-dir ./07-plugins/pr-review
 
 # Використати вбудовані функції
-/review-pr
-/check-security
-/check-tests
+/pr-review:review-pr
+/pr-review:check-security
+/pr-review:check-tests
 ```
 
 ---
@@ -435,7 +435,7 @@ claude --plugin-dir ./07-plugins/pr-review
 | **Список завдань** | Управління фоновими завданнями | `/tasks` (псевдонім `/bashes`) |
 | **Автопам'ять** | Автоматичне збереження з розмов | Claude зберігає нотатки в `~/.claude/projects/<project>/memory/MEMORY.md`; керування через `/memory` |
 | **Git Worktrees** | Ізольовані робочі простори для паралельної розробки | `claude --worktree <name>` (або `-w`) |
-| **Вибір моделі** | Перемикання між Fable 5.1, Fable 5, Opus 5, Sonnet 5.5, Sonnet 5, Sonnet 4.6, Opus 4.8 та Haiku 4.5 | `/model` або прапорець `--model` (`sonnet` на Anthropic API вказує на Sonnet 5.5, v2.1.284+) |
+| **Вибір моделі** | Перемикання між Fable 5.2, Fable 5.1, Fable 5, Opus 5.5, Opus 5, Sonnet 5.5, Sonnet 5, Sonnet 4.6, Opus 4.8, Haiku 5.5 та Haiku 4.5 | `/model` або прапорець `--model` (`sonnet` на Anthropic API вказує на Sonnet 5.5, v2.1.284+) |
 | **Команди агентів** | Координація кількох агентів | Увімкнути з `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` (експериментально) |
 | **Заплановані завдання** | Повторювані завдання з `/loop` | `/loop 5m /command` або CronCreate |
 | **Інтеграція з Chrome** | Автоматизація браузера | Прапорець `--chrome` або `/chrome` |
@@ -546,8 +546,8 @@ echo $GITHUB_PERSONAL_ACCESS_TOKEN
 
 ---
 
-**Останнє оновлення**: 26 жовтня 2026
-**Версія Claude Code**: 2.1.310
+**Останнє оновлення**: 12 листопада 2026
+**Версія Claude Code**: 2.1.322
 **Джерела**:
 - https://code.claude.com/docs/en/hooks
 - https://code.claude.com/docs/en/commands
@@ -561,3 +561,4 @@ echo $GITHUB_PERSONAL_ACCESS_TOKEN
 - https://code.claude.com/docs/en/model-config
 - https://code.claude.com/docs/en/headless
 - https://code.claude.com/docs/en/permission-modes#tool-calls-denied-in-claude-p-and-agent-sdk-runs
+- https://code.claude.com/docs/en/model-config#work-with-fable

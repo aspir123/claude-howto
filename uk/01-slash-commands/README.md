@@ -81,7 +81,7 @@
 | `/security-review` | Аналіз гілки на вразливості безпеки |
 | `/skills` | Список доступних навичок |
 | `/stats` | Візуалізація щоденного використання, сесій, серій |
-| `/stickers` | Замовити стікери Claude Code |
+| `/stickers` | Перевірити, чи доступні стікери Claude Code |
 | `/status` | Показати версію, модель, обліковий запис |
 | `/statusline` | Налаштування рядка стану |
 | `/tasks` | Список/управління фоновими завданнями |
@@ -592,6 +592,6 @@ Deploy the application to production:
 - https://code.claude.com/docs/en/hooks#hook-lifecycle
 - https://code.claude.com/docs/en/skills
 - https://code.claude.com/docs/en/feature-availability#ultra-plan
-**Сумісні моделі**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**Сумісні моделі**: Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 5.5, Claude Haiku 4.5
 
 *Частина серії посібників [Claude How To](../)*

@@ -144,7 +144,7 @@ to solving problems.
 | `hooks` | 아니요 | 이 서브에이전트가 활성화된 동안에만 실행되는 훅. 모든 훅 이벤트를 지원하며, 가장 흔한 것은 `PreToolUse`, `PostToolUse`, `Stop`(`SubagentStop`으로 실행)입니다 |
 | `memory` | 아니요 | 영구 메모리 디렉터리 범위: `user`, `project` 또는 `local` |
 | `background` | 아니요 | 서브에이전트는 이미 기본적으로 백그라운드에서 실행됩니다(v2.1.198). v2.1.302부터는 데스크톱 앱과 VS Code에서 주 대화의 서브에이전트도 백그라운드에서 시작합니다. 포크 모드가 켜져 있는 동안(기본값) Claude는 이를 기다릴 수 없습니다. `claude -p`, Agent SDK, 데스크톱 앱, VS Code에서 서브에이전트 자신의 Agent 호출은 기본적으로 포그라운드에서 실행됩니다. 항상 백그라운드로 *강제*하고 인라인 실행을 막으려면 `true`로 설정합니다 |
-| `effort` | 아니요 | 추론 노력 수준: `low`, `medium`, `high`, `xhigh` 또는 `max`. 세션의 노력 수준을 재정의하며, 사용 가능한 수준은 모델에 따라 다릅니다. Claude가 Agent 도구를 호출할 때 `effort` 값을 전달할 수도 있습니다(v2.1.292). |
+| `effort` | 아니요 | 추론 노력 수준: `low`, `medium`, `high`, `xhigh` 또는 `max`. 세션의 노력 수준을 재정의하며, 사용 가능한 수준은 모델에 따라 다릅니다. Claude가 Agent 도구를 호출할 때 `effort` 값을 전달할 수도 있습니다(v2.1.292). 메인 대화와 다른 모델에서 실행되는 서브에이전트는 세션의 수준을 사용하지 않고, 해당 모델에 저장된 노력 수준 또는 그 모델의 기본값으로 실행됩니다(v2.1.317). 따라서 수준을 직접 고르려면 여기서 `effort`를 설정하세요. |
 | `isolation` | 아니요 | 서브에이전트에 자체 git 워크트리를 제공하려면 `worktree`로 설정 |
 | `initialPrompt` | 아니요 | 서브에이전트가 주 에이전트로 실행될 때 자동으로 제출되는 첫 번째 턴 |
 | `color` | 아니요 | 작업 목록과 트랜스크립트에서 서브에이전트의 표시 색상. `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink`, `cyan` 중 하나 |
@@ -773,6 +773,8 @@ claude --teammate-mode tmux
 
 > **참고**: 분할 창 모드에는 tmux 또는 iTerm2가 필요합니다. VS Code 터미널, Windows 터미널 또는 Ghostty에서는 사용할 수 없습니다.
 
+> **참고 (v2.1.325)**: 이제 tmux와 iTerm2 팀원은 셸이 마지막으로 `cd`를 실행한 위치가 아니라 세션의 폴더에서 시작합니다. 인식되지 않는 `teammateMode` 값은 여전히 적용되지 않지만, 이제 `claude -p`, 시작 경고, `claude doctor`가 이를 건너뛴 항목으로 표시합니다. 두 변경 모두 changelog에 나오며, 에이전트 팀 문서에는 아직 없습니다.
+
 ### 내비게이션
 
 팀원 간에 이동하려면 에이전트 패널에서 위아래 화살표 키로 이동한 뒤 Enter를 누르거나(인-프로세스 모드), 팀원의 창을 클릭합니다(분할 창 모드).
@@ -783,7 +785,7 @@ claude --teammate-mode tmux
 
 ### 팀원 모델 선택
 
-v2.1.234부터 `/config`의 "Default teammate model" 설정이 제거되었습니다. 이제 생성 호출에서 다른 모델을 명시적으로 지정하지 않는 한, 팀원은 기본적으로 팀 리더의 모델을 상속합니다.
+v2.1.234부터 `/config`의 "Default teammate model" 설정이 제거되었습니다. 이제 생성 호출에서 다른 모델을 명시적으로 지정하지 않는 한, 팀원은 기본적으로 팀 리더의 모델을 상속합니다. v2.1.317부터 팀 리더와 다른 모델에서 실행되는 팀원은 리더 세션의 수준이 아니라 해당 모델에 저장된 노력 수준 또는 그 모델의 기본값으로 실행됩니다.
 
 ### 아키텍처
 
@@ -1355,8 +1357,8 @@ graph TD
 
 ---
 
-**최종 업데이트**: 2026년 10월 26일
-**Claude Code 버전**: 2.1.310
+**최종 업데이트**: 2026년 11월 14일
+**Claude Code 버전**: 2.1.325
 **출처**:
 - https://code.claude.com/docs/en/sub-agents
 - https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
@@ -1387,4 +1389,7 @@ graph TD
 - https://code.claude.com/docs/en/changelog#2-1-309
 - https://code.claude.com/docs/en/changelog#2-1-304
 - https://code.claude.com/docs/en/vs-code#see-a-background-subagents-tool-calls
-**호환 모델**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+- https://code.claude.com/docs/en/model-config#effort-level-of-subagents-and-teammates
+- https://code.claude.com/docs/en/changelog#2-1-317
+- https://code.claude.com/docs/en/changelog#2-1-325
+**호환 모델**: Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 5.5, Claude Haiku 4.5

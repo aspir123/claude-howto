@@ -87,7 +87,7 @@
 | `/fork` | 現在の会話をフォーク | 別案の探索 |
 | `/stats` | `/usage` の stats タブを開くエイリアス（v2.1.118+） | セッション指標の確認 |
 | `/statusline` | ステータスラインを設定 | ステータス表示のカスタマイズ |
-| `/stickers` | Claude Code ステッカーを注文 | 楽しいご褒美 |
+| `/stickers` | Claude Code ステッカーが入手可能か確認 | 楽しいご褒美 |
 | `/fast` | 高速出力モード切替 | 応答の高速化 |
 | `/terminal-setup` | ターミナル統合を設定 | ターミナル機能のセットアップ |
 | `/undo` | `/rewind` のエイリアス（v2.1.108） | `/rewind` と同じ |
@@ -257,8 +257,8 @@ cp -r 03-skills/* ~/.claude/skills/
 | プラグイン | 説明 | 構成要素 | 利用シーン | スコープ | インストール |
 |--------|-------------|------------|-------------|-------|--------------|
 | `pr-review` | PR レビューワークフロー | コマンド 3、エージェント 3、GitHub MCP | コードレビュー | プロジェクト | `claude --plugin-dir ./07-plugins/pr-review` |
-| `devops-automation` | デプロイと監視 | コマンド 4、エージェント 3、K8s MCP | DevOps タスク | プロジェクト | `/plugin install devops-automation` |
-| `documentation` | ドキュメント生成スイート | コマンド 4、エージェント 3、テンプレート | ドキュメント | プロジェクト | `/plugin install documentation` |
+| `devops-automation` | デプロイと監視 | コマンド 4、エージェント 3、フック 2 | DevOps タスク | プロジェクト | `claude --plugin-dir ./07-plugins/devops-automation` |
+| `documentation` | ドキュメント生成スイート | コマンド 4、エージェント 3、GitHub MCP、テンプレート | ドキュメント | プロジェクト | `claude --plugin-dir ./07-plugins/documentation` |
 
 > **スコープ**：`プロジェクト` = チーム共有、`ユーザー` = 個人ワークフロー
 
@@ -565,4 +565,4 @@ chmod +x ~/.claude/hooks/*.sh
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/ultrareview#pricing-and-free-runs
 - https://code.claude.com/docs/en/feature-availability#ultra-plan
-**互換モデル**：Claude Fable 5、Claude Opus 5、Claude Sonnet 5、Claude Sonnet 4.6、Claude Opus 4.8、Claude Haiku 4.5
+**互換モデル**：Claude Fable 5.2、Claude Fable 5.1、Claude Fable 5、Claude Opus 5.5、Claude Opus 5、Claude Sonnet 5.5、Claude Sonnet 5、Claude Sonnet 4.6、Claude Opus 4.8、Claude Haiku 5.5、Claude Haiku 4.5

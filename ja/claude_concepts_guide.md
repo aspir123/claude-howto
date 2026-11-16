@@ -2296,8 +2296,8 @@ claude --plugin-dir ./07-plugins/pr-review
 # 結果：
 # ✅ 3 slash commands installed
 # ✅ 3 subagents configured
-# ✅ 2 MCP servers connected
-# ✅ 4 hooks registered
+# ✅ 1 MCP server connected
+# ✅ 1 hook registered
 # ✅ Ready to use!
 ```
 
@@ -2316,14 +2316,10 @@ devops-automation/
 │   ├── deployment-specialist.md
 │   ├── incident-commander.md
 │   └── alert-analyzer.md
-├── mcp/
-│   ├── github-config.json
-│   ├── kubernetes-config.json
-│   └── prometheus-config.json
 ├── hooks/
+│   ├── hooks.json
 │   ├── pre-deploy.js
-│   ├── post-deploy.js
-│   └── on-error.js
+│   └── post-deploy.js
 └── scripts/
     ├── deploy.sh
     ├── rollback.sh
@@ -2345,9 +2341,7 @@ documentation/
 │   ├── api-documenter.md
 │   ├── code-commentator.md
 │   └── example-generator.md
-├── mcp/
-│   ├── github-docs-config.json
-│   └── slack-announce-config.json
+├── .mcp.json
 └── templates/
     ├── api-endpoint.md
     ├── function-docs.md
@@ -2463,8 +2457,8 @@ Complete PR review workflow with security, testing, and documentation checks.
 ## What's Included
 - 3 slash commands for different review types
 - 3 specialized subagents
-- GitHub and CodeQL MCP integration
-- Automated security scanning hooks
+- GitHub MCP integration
+- A pre-review hook that checks the git repository
 
 ## Installation
 ```bash
@@ -2480,15 +2474,15 @@ claude --plugin-dir ./07-plugins/pr-review
 
 ## Usage
 ```bash
-/review-pr
-/check-security
-/check-tests
+/pr-review:review-pr
+/pr-review:check-security
+/pr-review:check-tests
 ```
 
 ## Requirements
 - Claude Code 2.1+
-- GitHub access
-- CodeQL (optional)
+- Node.js and Docker
+- A GitHub personal access token in `GITHUB_TOKEN`
 ~~~~
 
 ### プラグイン vs 手動設定
@@ -3076,7 +3070,7 @@ Claude Code は推論努力を調整可能な 3 モデルをサポートする�
 ---
 
 *最終更新：2026 年 9 月 2 日*
-*対応：Claude Fable 5、Claude Opus 5、Claude Sonnet 5、Claude Sonnet 4.6、Claude Opus 4.8、Claude Haiku 4.5*
+*対応：Claude Fable 5.2、Claude Fable 5.1、Claude Fable 5、Claude Opus 5.5、Claude Opus 5、Claude Sonnet 5.5、Claude Sonnet 5、Claude Sonnet 4.6、Claude Opus 4.8、Claude Haiku 5.5、Claude Haiku 4.5*
 *収録機能：フック、チェックポイント、プラニングモード、拡張思考、バックグラウンドタスク、権限モード（6 種）、ヘッドレスモード、セッション管理、Auto Memory、Agent Teams、定期タスク、Chrome 連携、Channels、音声入力、同梱スキル*
 
 ---
@@ -3104,4 +3098,4 @@ Claude Code は推論努力を調整可能な 3 モデルをサポートする�
 - https://code.claude.com/docs/en/permission-modes#which-mode-a-non-interactive-run-starts-in
 - https://code.claude.com/docs/en/model-config#adjust-effort-level
 
-**対応モデル：** Claude Fable 5、Claude Opus 5、Claude Sonnet 5、Claude Sonnet 4.6、Claude Opus 4.8、Claude Haiku 4.5
+**対応モデル：** Claude Fable 5.2、Claude Fable 5.1、Claude Fable 5、Claude Opus 5.5、Claude Opus 5、Claude Sonnet 5.5、Claude Sonnet 5、Claude Sonnet 4.6、Claude Opus 4.8、Claude Haiku 5.5、Claude Haiku 4.5

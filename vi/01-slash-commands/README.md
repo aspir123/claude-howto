@@ -79,7 +79,7 @@ Lệnh tích hợp sẵn là các lối tắt cho các hành động phổ biế
 | `/security-review` | Phân tích nhánh để tìm lỗ hổng bảo mật |
 | `/skills` | Liệt kê các skills có sẵn |
 | `/stats` | Trực quan hóa việc sử dụng hàng ngày, các phiên, chuỗi ngày |
-| `/stickers` | Đặt sticker Claude Code |
+| `/stickers` | Kiểm tra xem sticker Claude Code có sẵn không |
 | `/status` | Hiển thị phiên bản, mô hình, tài khoản |
 | `/statusline` | Cấu hình dòng trạng thái |
 | `/tasks` | Liệt kê/quản lý các tác vụ nền |
@@ -573,6 +573,6 @@ Nếu cả hai tồn tại với cùng tên, **skill sẽ được ưu tiên**. 
 - https://code.claude.com/docs/en/hooks#hook-lifecycle
 - https://code.claude.com/docs/en/skills
 - https://code.claude.com/docs/en/feature-availability#ultra-plan
-**Các Mô Hình Tương Thích**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**Các Mô Hình Tương Thích**: Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 5.5, Claude Haiku 4.5
 
 *Phần của series hướng dẫn [Claude How To](../)*

@@ -208,7 +208,7 @@ claude --model opusplan "design and implement the new API"
 
 **외부에서 계획 편집**: `Ctrl+G`를 눌러 외부 편집기에서 현재 계획을 열고 상세하게 수정할 수 있습니다.
 
-> **v2.1.112 업데이트**: 이제 계획 파일은 무작위 단어 대신 생성된 프롬프트의 이름을 따서 명명되므로, 더 쉽게 찾아보고 재사용할 수 있습니다.
+> **v2.1.111 업데이트**: 이제 계획 파일은 순전히 무작위 단어 대신 생성된 프롬프트의 이름을 따서 `fix-auth-race-snug-otter.md`처럼 명명되므로, 더 쉽게 찾아보고 재사용할 수 있습니다.
 
 > **v2.1.136 업데이트 — 계획 모드 쓰기 블록은 무조건적입니다**: 계획 모드는 이제 `permissions.allow`에 일치하는 `Edit(...)` 규칙이 있는 경우를 포함하여 모든 파일 쓰기를 차단합니다. 이전에는 관대한 `Edit(...)` 규칙이 계획 모드에서 쓰기를 허용할 수 있었지만, 해당 우회 경로는 폐쇄되었습니다. 워크플로가 이전 동작에 의존하는 경우, 편집하기 전에 계획 모드를 종료하십시오 (`Shift+Tab`).
 
@@ -233,7 +233,7 @@ claude --model opusplan "design and implement the new API"
 
 **자동 활성화**:
 - 모든 모델 (Opus 5, Opus 4.8, Opus 4.7, Sonnet 4.6, Haiku 4.5)에 기본적으로 활성화되어 있습니다.
-- Opus 5 / Opus 4.8: 노력 수준이 있는 적응형 추론: `low` (○), `medium` (◐), `high` (●), `xhigh`, `max`. 기본값은 Opus 5.5(v2.1.280부터 기본 모델), Sonnet 5.5, Haiku 5.5에서 `medium`이고, Opus 5 (v2.1.219), Sonnet 5, Opus 4.8 (v2.1.154), Opus 4.6, Sonnet 4.6에서 `high`이며, Opus 4.7에서 `xhigh`입니다. `xhigh`는 Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7에서 사용할 수 있습니다 (Opus 4.6 / Sonnet 4.6에서는 `high`로 대체됩니다). `max`는 Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7/4.6 및 Sonnet 4.6에서 작동합니다 (세션 전용). Haiku 4.5에는 노력 수준이 없습니다. Opus 5, Opus 4.8, Opus 4.7은 1M 토큰의 기본 컨텍스트 창을 가집니다 (1M 컨텍스트 수정은 v2.1.117에 적용됨 — 이전에는 `/context`가 Opus 4.7을 200K 창에 대해 잘못 계산하여 조기 자동 압축을 트리거했습니다). v2.1.129부터 `/context`는 UI 내에서만 시각화를 표시합니다. ASCII 시각화는 더 이상 대화 컨텍스트로 유출되지 않으므로 (호출당 약 1.6k 토큰 절약), `/context`는 자유롭게 호출해도 안전합니다.
+- Opus 5 / Opus 4.8: 노력 수준이 있는 적응형 추론: `low` (○), `medium` (◐), `high` (●), `xhigh`, `max`. 기본값은 Fable 5.2, Opus 5.5(v2.1.280부터 기본 모델), Sonnet 5.5, Haiku 5.5에서 `medium`이고, Fable 5.1, Fable 5, Opus 5 (v2.1.219), Sonnet 5, Opus 4.8 (v2.1.154), Opus 4.6, Sonnet 4.6에서 `high`이며, Opus 4.7에서 `xhigh`입니다. `xhigh`는 Fable 모델, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7에서 사용할 수 있습니다 (Opus 4.6 / Sonnet 4.6에서는 `high`로 대체됩니다). `max`는 Fable 모델, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7/4.6 및 Sonnet 4.6에서 작동합니다 (세션 전용). Haiku 4.5에는 노력 수준이 없습니다. Opus 5, Opus 4.8, Opus 4.7은 1M 토큰의 기본 컨텍스트 창을 가집니다 (1M 컨텍스트 수정은 v2.1.117에 적용됨 — 이전에는 `/context`가 Opus 4.7을 200K 창에 대해 잘못 계산하여 조기 자동 압축을 트리거했습니다). v2.1.129부터 `/context`는 UI 내에서만 시각화를 표시합니다. ASCII 시각화는 더 이상 대화 컨텍스트로 유출되지 않으므로 (호출당 약 1.6k 토큰 절약), `/context`는 자유롭게 호출해도 안전합니다.
 - Opus 4.6 / Sonnet 4.6의 Pro/Max 구독자: v2.1.117에서 기본 노력 수준이 `medium`에서 `high`로 상향 조정되었습니다.
 - 다른 모델: 최대 31,999 토큰의 고정 예산
 
@@ -247,9 +247,9 @@ claude --model opusplan "design and implement the new API"
 export MAX_THINKING_TOKENS=1024
 ```
 
-**노력 수준** (Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6에서 지원 — Haiku 4.5 제외):
+**노력 수준** (Fable 모델, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6에서 지원 — Haiku 4.5 제외):
 ```bash
-export CLAUDE_CODE_EFFORT_LEVEL=high   # low (○), medium (◐), high (●), xhigh (Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7), or max — default is high on Opus 5 and Opus 4.8
+export CLAUDE_CODE_EFFORT_LEVEL=high   # low (○), medium (◐), high (●), xhigh (Fable models, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7), or max — default is high on Opus 5 and Opus 4.8
 ```
 
 **CLI 플래그**:
@@ -262,7 +262,7 @@ claude --effort high "complex architectural review"
 /effort high
 ```
 
-> **참고:** 프롬프트의 "ultrathink" 키워드는 심층 추론 모드를 활성화합니다. 노력 수준 `low`, `medium`, `high`, `max`는 Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6에서 지원됩니다 (Haiku 4.5는 지원하지 않음). `xhigh`는 Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7에서 사용할 수 있습니다. 기본 노력 수준은 Opus 5.5, Sonnet 5.5, Haiku 5.5에서 `medium`이고, Opus 5, Sonnet 5, Opus 4.8 (및 Opus 4.6 / Sonnet 4.6)에서 `high`이며, Opus 4.7에서 `xhigh`입니다. 첫 실행 시 기본 노력 수준을 고정하는 Opus 4.8 및 Opus 4.7과 달리 Opus 5에는 그런 고정이 없으므로, 이전에 설정한 수준이 그대로 유지됩니다. `/effort` 슬라이더에는 **Ultracode** 토글(Tab 또는 `/effort ultracode [on|off]`)도 있는데, 이는 모델 노력 수준이 **아니며** 세션이 실행 중인 노력 수준에서 Claude가 동적 워크플로를 조율하도록 합니다. v2.1.284부터는 더 이상 `xhigh`를 강제하지 않고 수준을 바꿔도 켜진 상태로 유지됩니다. `--effort ultracode`와 Agent SDK의 `effortLevel: "ultracode"`는 여전히 `xhigh`를 설정합니다.
+> **참고:** 프롬프트의 "ultrathink" 키워드는 심층 추론 모드를 활성화합니다. 노력 수준 `low`, `medium`, `high`, `max`는 Fable 모델, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6에서 지원됩니다 (Haiku 4.5는 지원하지 않음). `xhigh`는 Fable 모델, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7에서 사용할 수 있습니다. 기본 노력 수준은 Fable 5.2, Opus 5.5, Sonnet 5.5, Haiku 5.5에서 `medium`이고, Fable 5.1, Fable 5, Opus 5, Sonnet 5, Opus 4.8 (및 Opus 4.6 / Sonnet 4.6)에서 `high`이며, Opus 4.7에서 `xhigh`입니다. 첫 실행 시 기본 노력 수준을 고정하는 Opus 4.8 및 Opus 4.7과 달리 Opus 5에는 그런 고정이 없으므로, 이전에 설정한 수준이 그대로 유지됩니다. `/effort` 슬라이더에는 **Ultracode** 토글(Tab 또는 `/effort ultracode [on|off]`)도 있는데, 이는 모델 노력 수준이 **아니며** 세션이 실행 중인 노력 수준에서 Claude가 동적 워크플로를 조율하도록 합니다. v2.1.284부터는 더 이상 `xhigh`를 강제하지 않고 수준을 바꿔도 켜진 상태로 유지됩니다. `--effort ultracode`와 Agent SDK의 `effortLevel: "ultracode"`는 여전히 `xhigh`를 설정합니다.
 
 ### Opus 5의 안전 분류기 대체 동작
 
@@ -273,7 +273,7 @@ claude --effort high "complex architectural review"
 
 여기서 이것이 중요한 이유: Opus 5에서 [보안 검토 서브에이전트](../04-subagents/README.md)나 CTF/침투 테스트 작업을 실행한다면, 사이버 보안 프롬프트는 Opus 4.8(노력 상한과 컨텍스트 창이 다름)에서 조용히 재실행되고, 생물학 관련 프롬프트는 즉시 거부될 수 있다고 예상하십시오. 이 동작이 방해된다면 다른 모델을 명시적으로 고정하십시오.
 
-**전환 제어** — `switchModelsOnFlag` 설정(v2.1.170+, 기본값 `true`)은 대체가 조용히 일어날지 결정합니다. `false`로 설정하면 Claude Code가 대신 일시 중지하여 모델 전환과 프롬프트 수정 중 하나를 선택할 수 있게 합니다. `/config`에서 **Switch models when a message is flagged**로 표시됩니다.
+**전환 제어** — `switchModelsOnFlag` 설정(v2.1.170+, 기본값 `true`)은 대체가 조용히 일어날지 결정합니다. `false`로 설정하면 Claude Code가 대신 일시 중지하여 모델 전환과 프롬프트 수정 중 하나를 선택할 수 있게 합니다. 이 일시 중지는 메인 대화에만 해당합니다. 서브에이전트는 절대 일시 중지하지 않으므로, **Ask each time**(`false`)에서는 플래그가 지정된 서브에이전트 요청이 모델을 전환하는 대신 실패합니다(v2.1.318; 이전 버전은 대체 모델로 다시 실행했습니다). `/config`에서 **Switch models when a message is flagged**로 표시됩니다.
 
 ```json
 {
@@ -367,7 +367,7 @@ Migration path: When you reach 50k+ users or specific modules need independent s
 # Set thinking token budget
 export MAX_THINKING_TOKENS=16000
 
-# Set effort level (Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6): low (○), medium (◐), high (●), xhigh (Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7), or max — default is high on Opus 5 and Opus 4.8
+# Set effort level (Fable models, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6): low (○), medium (◐), high (●), xhigh (Fable models, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7), or max — default is high on Opus 5 and Opus 4.8
 export CLAUDE_CODE_EFFORT_LEVEL=high
 ```
 
@@ -379,7 +379,7 @@ export CLAUDE_CODE_EFFORT_LEVEL=high
 
 ## 자동 모드
 
-자동 모드는 백그라운드 안전 분류기를 사용하여 각 작업을 실행하기 전에 검토하는 권한 모드입니다. Claude가 자율적으로 작업하면서 위험한 작업을 차단할 수 있도록 합니다. 모든 플랜에서 사용할 수 있지만 적격한 모델이 필요합니다(Anthropic API 및 Claude Platform on AWS에서는 Claude Opus 4.6 이상, Sonnet 4.6 이상, Haiku 5.5 또는 Fable 모델, Bedrock, Vertex, Foundry 및 로그인된 Claude apps gateway 세션에서는 Sonnet 5 이상, Opus 4.7 이상, Haiku 5.5 또는 Fable 모델). Team 및 Enterprise에서는 기본적으로 켜져 있으며, 관리자는 관리형 설정에서 조직 전체에 대해 끌 수 있습니다.
+자동 모드는 백그라운드 안전 분류기를 사용하여 각 작업을 실행하기 전에 검토하는 권한 모드입니다. Claude가 자율적으로 작업하면서 위험한 작업을 차단할 수 있도록 합니다. 모든 플랜에서 사용할 수 있지만 적격한 모델이 필요합니다(Anthropic API 및 Claude Platform on AWS에서는 Claude Opus 4.6 이상, Sonnet 4.6 이상, Haiku 5.5 또는 Fable 모델, Bedrock, Vertex, Foundry 및 로그인된 Claude apps gateway 세션에서는 Sonnet 5 이상, Opus 4.7 이상, Haiku 5.5 또는 Fable 모델). `ANTHROPIC_BASE_URL`의 게이트웨이 뒤에서는 자동 모드가 게이트웨이 이름에 "haiku"가 포함된 모델을 `claude-haiku-5-5`를 제외하고 Haiku 4.5와 마찬가지로 거부합니다(v2.1.323). Team 및 Enterprise에서는 기본적으로 켜져 있으며, 관리자는 관리형 설정에서 조직 전체에 대해 끌 수 있습니다.
 
 ### 요구 사항
 
@@ -401,7 +401,7 @@ claude --permission-mode auto
 # 또는 REPL에서 Shift+Tab으로 순환하여 선택합니다
 ```
 
-> **v2.1.112 업데이트**: 자동 모드는 더 이상 `--enable-auto-mode` 플래그를 필요로 하지 않습니다. Max 구독자는 Opus 4.7에서 직접 액세스할 수 있습니다.
+> **v2.1.111 업데이트**: 자동 모드는 더 이상 `--enable-auto-mode` 플래그를 필요로 하지 않습니다. Max 구독자는 Opus 4.7에서 직접 액세스할 수 있습니다.
 
 > **v2.1.158 업데이트**: Opus 4.7/4.8용 Bedrock, Vertex, Foundry에서 자동 모드를 사용할 수 있게 되었으며, `CLAUDE_CODE_ENABLE_AUTO_MODE=1`로 활성화해야 했습니다.
 >
@@ -573,7 +573,7 @@ python3 09-advanced-features/setup-auto-mode-permissions.py --include-git-write 
 | 선택적 Git 쓰기 | `Bash(git add:*)`, `Bash(git commit:*)`, `Bash(git checkout:*)`, `Bash(git switch:*)`, `Bash(git stash:*)`, `Bash(git tag:*)` |
 | 패키지 관리자 | `Bash(npm ci:*)`, `Bash(npm install:*)`, `Bash(pip install:*)`, `Bash(pip3 install:*)` |
 | 빌드 및 테스트 | `Bash(make:*)`, `Bash(pytest:*)`, `Bash(go test:*)` |
-| 일반 셸 | `Bash(ls:*)`, `Bash(cat:*)`, `Bash(find:*)` |
+| 일반 셸 | `Bash(ls:*)`, `Bash(cat:*)`, `Bash(wc:*)` |
 | GitHub CLI | `Bash(gh pr view:*)`, `Bash(gh pr create:*)`, `Bash(gh issue list:*)` |
 
 위험한 작업 (`rm -rf`, `sudo`, 강제 푸시, `DROP TABLE`, `terraform destroy` 등)은 의도적으로 제외됩니다. 스크립트는 멱등성이 있으므로 두 번 실행해도 규칙이 중복되지 않습니다.
@@ -673,7 +673,7 @@ export CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1
 
 동시 실행 수도 백그라운드 작업 설정이 아닙니다. 한 번에 실행되는 에이전트 수는 `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`(기본값 `20`)가 결정합니다.
 
-백그라운드 Bash 및 PowerShell 명령어는 무인 세션에서만 시간 제한이 있습니다(v2.1.288). `-p` 실행, Agent SDK 세션, CI 또는 클라우드 세션에서 `run_in_background`로 시작한 명령어는 `timeout`(기본 30분, 최대 2시간) 후 중지되며, 중지되면 Claude에 알림이 갑니다. 터미널, 데스크톱 앱 또는 VS Code 세션의 백그라운드 명령어에는 시간 제한이 없습니다(v2.1.285–v2.1.287에서는 모든 세션에 제한이 적용되었습니다).
+백그라운드 Bash 및 PowerShell 명령어는 무인 세션에서만 시간 제한이 있습니다(v2.1.288). `-p` 실행, Agent SDK 세션, CI 또는 클라우드 세션에서 `run_in_background`로 시작한 명령어는 `timeout`(기본 30분, 프롬프트를 `--input-format stream-json` 대신 텍스트로 전달하는 `-p` 실행에서는 10분, 최대 2시간) 후 중지되며, 중지되면 Claude에 알림이 갑니다. 터미널, 데스크톱 앱 또는 VS Code 세션의 백그라운드 명령어에는 시간 제한이 없습니다(v2.1.285–v2.1.287에서는 모든 세션에 제한이 적용되었습니다).
 
 ---
 
@@ -746,7 +746,7 @@ v2.1.219부터 동적 워크플로의 기본값은 **중간 크기 지침(에이
 
 ## 예약된 작업
 
-예약된 작업을 사용하면 반복적인 일정 또는 일회성 알림으로 프롬프트를 자동으로 실행할 수 있습니다. 작업은 세션 범위이며, Claude Code가 활성 상태일 때 실행되고 세션이 종료되면 지워집니다. v2.1.72+부터 사용할 수 있습니다.
+예약된 작업을 사용하면 반복적인 일정 또는 일회성 알림으로 프롬프트를 자동으로 실행할 수 있습니다. 작업은 세션 범위이며, Claude Code가 실행 중일 때만 실행됩니다. `--resume` 또는 `--continue`로 재개하면 Claude Code는 만료되지 않은 작업을 복원하며, 예정 시각이 지난 일회성 작업과 자체 페이스 `/loop`는 예외입니다(다시 시작하려면 `/loop`를 다시 실행하십시오). v2.1.72+부터 사용할 수 있습니다.
 
 > **"Routines"는 이제 "클라우드 예약 작업"입니다 (2026년 10월)**: Anthropic 문서는 `/schedule`(별칭 `/routines`, 아래 참조)로 만드는 클라우드 작업인 Routines의 이름을 **클라우드 예약 작업(이전 명칭 routines)**으로 바꾸었고, 이 페이지의 `/loop` 및 크론 작업은 **세션 범위 예약 작업**이라고 부릅니다. 이전 이름은 `claude.ai/code/routines` URL, `/fire` API, 관리자 토글 **Scheduled tasks (Was Routines)**에 남아 있습니다.
 
@@ -781,18 +781,20 @@ in 45 minutes, run the integration tests
 
 **제한 및 동작**:
 - 세션당 최대 **50개의 예약된 작업**
-- 세션 범위 — 세션이 종료되면 지워집니다
-- 반복 작업은 **3일** 후 자동 만료됩니다
+- 세션 범위 — 만료되지 않았다면 `--resume`/`--continue` 시 복원됩니다
+- 반복 작업은 생성 후 **7일**이 지나면 자동 만료됩니다(마지막으로 한 번 실행된 뒤 스스로 삭제됩니다)
 - Claude Code가 실행 중일 때만 작업이 발생합니다 — 놓친 작업에 대한 따라잡기는 없습니다
+
+> **`allowed-tools` 또는 훅을 선언한 스킬은 먼저 확인합니다 (v2.1.325)**: 변경 로그에 따르면 이제 예약된 작업과 `/loop`는 `allowed-tools` 또는 훅을 선언한 스킬을 실행하기 전에 확인을 요청합니다. 무인으로 실행하려면 `permissions.allow`에 `Skill(name)`을 추가하십시오. Desktop, IDE, SDK 호스트의 "Always allow"는 이제 규칙을 저장하면 해당 명령어가 다시 허용되는 경우에만 규칙 단독 옵션을 제공하므로, 이에 의존하던 예약된 작업이 이제 사용자를 기다릴 수 있습니다. 예약된 작업 문서에는 아직 두 변경 사항 모두 나와 있지 않습니다.
 
 ### 동작 세부 정보
 
 | 측면 | 세부 사항 |
 |--------|--------|
-| **반복 지터** | 간격의 최대 10% (최대 15분) |
-| **일회성 지터** | :00/:30 경계에서 최대 90초 |
+| **반복 지터** | 다음 실행까지 간격의 최대 절반만큼 늦게 실행되며 최대 30분; `*/5 * * * *` 작업(`/loop 5m`이 만드는 작업)은 지연되지 않고 15초 일찍 시작됩니다 |
+| **일회성 지터** | `:00` 또는 `:30`으로 예약하면 최대 90초 일찍 실행됩니다 |
 | **놓친 발동** | 따라잡기 없음 — Claude Code가 실행 중이 아니면 건너뜀 |
-| **영속성** | 재시작 시 영속되지 않음 |
+| **영속성** | `--resume`/`--continue` 시 복원됨. 단, 만료된 작업, 예정 시각이 지난 일회성 작업, 자체 페이스 `/loop`는 제외; 놓친 실행은 따라잡지 않음 |
 
 ### 클라우드 예약 작업
 
@@ -841,7 +843,7 @@ export CLAUDE_CODE_DISABLE_CRON=1
 
 > **참고**: `default` 권한 모드는 v2.1.200에서 **Manual**로 이름이 바뀌었으며(CLI, `--help`, VS Code, JetBrains 전반), 이 모드가 활성화된 동안에는 하단에 회색 ⏸ 배지가 표시됩니다(v2.1.203). `--permission-mode manual`과 `--permission-mode default` 모두 작동하며, 설정의 `"defaultMode": "manual"`과 `"defaultMode": "default"`도 마찬가지입니다. 설정 키는 `permissions.defaultMode`이며 `permissions.mode` 키는 없으므로, 아래 예시는 정식 철자를 사용합니다.
 
-CLI에서 `Shift+Tab`으로 모드를 순환할 수 있습니다. `--permission-mode` 플래그 또는 `permissions.defaultMode` 설정으로 기본값을 설정합니다. 권한 모드가 구성되지 않은 경우, v2.1.284부터 모든 플랜과 제공자에서 대화형 터미널 및 VS Code 세션은 자동 모드로 시작합니다(v2.1.283에서는 Bedrock, Google Cloud's Agent Platform, Foundry 같은 서드파티 제공자나 텔레메트리가 꺼진 경우에만 그랬습니다). `permissions.defaultMode`가 여전히 이를 재정의하며, 자동 모드를 사용할 수 없는 세션은 대신 Manual로 시작합니다. v2.1.302부터 권한 모드가 설정되지 않은 `claude -p` 또는 Agent SDK 실행은 Manual 모드(구성 값 `default`)로 시작하며 승인이 필요한 도구 호출을 거부합니다. `--permission-mode`(예: `auto` 또는 `acceptEdits`)나 `--allowedTools`를 전달하십시오.
+CLI에서 `Shift+Tab`으로 모드를 순환할 수 있습니다. `--permission-mode` 플래그 또는 `permissions.defaultMode` 설정으로 기본값을 설정합니다. 권한 모드가 구성되지 않은 경우, v2.1.284부터 모든 플랜과 제공자에서 대화형 터미널 및 VS Code 세션은 자동 모드로 시작합니다(v2.1.283에서는 Bedrock, Google Cloud's Agent Platform, Foundry 같은 서드파티 제공자나 텔레메트리가 꺼진 경우에만 그랬습니다). `permissions.defaultMode`가 여전히 이를 재정의합니다. `--permission-mode` 플래그, 설정 파일 또는 이 기본값이 `auto`를 선택했지만 세션에서 자동 모드를 사용할 수 없는 경우, 세션은 먼저 묻는 Manual 모드로 시작합니다. v2.1.323에서는 `--permission-mode auto`와 설정의 `defaultMode: auto`가 이런 세션을 더 많은 것을 허용할 수 있는 모드로 시작하던 문제가 수정되었습니다. v2.1.302부터 권한 모드가 설정되지 않은 `claude -p` 또는 Agent SDK 실행은 Manual 모드(구성 값 `default`)로 시작하며 승인이 필요한 도구 호출을 거부합니다. `--permission-mode`(예: `auto` 또는 `acceptEdits`)나 `--allowedTools`를 전달하십시오.
 
 > **계획 모드는 셸 명령어를 분류기에 맡깁니다 (v2.1.218)**: [자동 모드](#자동-모드)를 사용할 수 있고 `useAutoModeDuringPlan` 설정이 켜져 있으면(기본값), 계획 중에 분류기가 프롬프트 대신 셸 명령어를 검토합니다. 승인된 명령어는 실행되고 거부된 명령어는 차단됩니다. 계획 모드는 여전히 파일 쓰기를 무조건 차단합니다.
 
@@ -1520,7 +1522,7 @@ User: Deploy to prodcution<Backspace><Backspace>uction
 
 > **참고**: 독립형 `/output-style` 명령어는 v2.1.73에서 지원 중단(deprecated)되고 v2.1.91에서 제거되었지만, **v2.1.269에서 다시 도입되었으며** v2.1.278에서 사용할 수 있습니다. 헤드리스 및 원격 제어 세션에서 작동합니다. `/config`와 `outputStyle` 설정도 여전히 작동합니다.
 
-출력 스타일은 Claude Code가 세션 시작 시 한 번 읽는 시스템 프롬프트의 일부이므로, 변경 사항은 `/clear` 후 또는 새 세션에서 적용됩니다.
+v2.1.251부터 세션 중에 스타일을 바꾸면 다음 메시지부터 적용되며, Claude Code는 새 스타일의 지침을 대화 속 메시지로 전달합니다. 이전 버전에서는 `/clear` 후 또는 새 세션에서만 새 스타일이 적용되었습니다. 터미널에서는 스타일 파일을 시작할 때 읽으므로, 파일을 만들거나 수정한 뒤에는 Claude Code를 다시 시작하세요.
 
 ### 사용자 지정 출력 스타일
 
@@ -1814,6 +1816,8 @@ claude remote-control --name "Auth Refactor"
 
 > **참고 (v2.1.300)**: `claude remote-control`은 더 이상 `--sandbox`나 `--no-sandbox`를 허용하지 않습니다(원래 아무 효과가 없었으며, 이제 둘 중 하나를 전달하면 오류와 함께 종료됩니다). 원격 제어 세션을 샌드박싱하려면 설정 파일에서 `sandbox.enabled`를 설정하십시오.
 
+> **종료 상태와 공유 링크 (v2.1.325)**: 변경 로그에 따르면 이제 `claude remote-control`은 스스로 중지될 때 상태 4로 종료하고(단일 세션 실행은 여전히 0으로 종료) 등록할 수 없을 때 69로 종료하므로, 서비스 관리자가 다시 시작할 수 있습니다. 원격 제어 문서에는 아직 이 코드가 나와 있지 않습니다. 연결된 세션에 공유 링크가 있거나 Claude Code가 이를 확인할 수 없는 경우, `/resume`과 `/teleport`는 다른 대화를 열 때 원격 제어 연결을 끊습니다. 그렇지 않으면 링크를 가진 사람들이 그 대화를 보게 되기 때문입니다. 새 대화를 연결하려면 `/remote-control`을 실행하십시오. 원격 제어 문서는 공유 링크 확인을 v2.1.324로 표기하고, 변경 로그는 v2.1.325에 기재합니다.
+
 ### 세션에 연결
 
 다른 기기에서 연결하는 세 가지 방법:
@@ -2040,15 +2044,18 @@ export CLAUDE_CODE_TASK_LIST_ID=my-project-sprint-3
 ### 작동 방식
 
 - 입력 프롬프트 아래에 회색 텍스트로 제안이 나타납니다.
-- `Tab`을 눌러 제안을 수락합니다.
-- `Enter`를 눌러 수락하고 즉시 제출합니다.
+- `Tab` 또는 `Right arrow`를 눌러 제안을 프롬프트 입력란에 넣은 다음 `Enter`를 눌러 제출합니다.
+- 입력을 시작하면 제안이 사라집니다.
 - 제안은 Git 기록 및 대화 상태에서 가져온 컨텍스트 인식입니다.
+- **VS Code (v2.1.325)**: Claude가 응답한 후 확장 패널은 빈 프롬프트 상자에 다음 프롬프트 제안을 회색 기울임꼴 텍스트로 표시할 수 있습니다. `Tab`을 눌러 편집 가능한 텍스트로 바꾼 다음 보내십시오. 수락하기 전에 `Enter`를 누르면 제안이 전송되지 않습니다. 각 제안은 짧은 백그라운드 요청을 사용하며, 이 요청은 플랜의 사용 한도 또는 API 비용에 포함됩니다.
 
 ### 프롬프트 제안 비활성화
 
 ```bash
 export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 ```
+
+또는 설정 파일에서 `promptSuggestionEnabled`를 `false`로 설정하거나 `/config`에서 **Prompt suggestions**를 끄십시오. VS Code에서는 `~/.claude/settings.json`에서 설정하십시오. 새 대화에서는 제안이 더 이상 표시되지 않으며, 열려 있는 대화에서는 **Developer: Reload Window**를 실행한 후부터 표시되지 않습니다. `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION`은 이 설정보다 우선하므로, `true`로 설정했다면 설정한 곳에서 `false`로 바꾸십시오.
 
 ---
 
@@ -2116,10 +2123,12 @@ claude -w
 |------|-------------|
 | `EnterWorktree` | 워크트리에 진입하는 도구; v2.1.157부터 세션 중에 Claude 관리 워크트리 간 전환 가능 |
 | `ExitWorktree` | 현재 워크트리를 종료하고 정리하는 도구 |
-| `WorktreeCreate` | 워크트리가 생성될 때 발생하는 훅 이벤트 |
+| `WorktreeCreate` | 워크트리가 생성될 때 발생하는 훅 이벤트. 훅이 실제 경로를 출력하도록 하십시오. Claude Code는 저장소 루트 아래의 심볼릭 링크를 거치는 경로를 거부하며, v2.1.325부터는 `EnterWorktree`도 거부합니다 |
 | `WorktreeRemove` | 워크트리가 제거될 때 발생하는 훅 이벤트 |
 
-v2.1.157부터 Claude가 관리하는 워크트리는 에이전트가 작업을 마친 후 잠금 해제되므로 `git worktree remove`/`prune`으로 정리할 수 있습니다.
+v2.1.157부터 Claude가 관리하는 워크트리는 에이전트가 작업을 마친 후 잠금 해제되므로 `git worktree remove`/`prune`으로 정리할 수 있습니다. `-p`를 사용한 비대화형 실행의 경우, [워크트리 문서](https://code.claude.com/docs/en/worktrees#clean-up-worktrees)에 따르면 Claude는 해당 워크트리를 정리하지 않으며, Claude Code는 생성 시 각 워크트리에 건 잠금을 이후 세션의 오래된 잠금 정리(stale-lock sweep)가 해제할 때까지 그대로 둡니다.
+
+> **격리된 워크트리는 일부 git 명령어를 거부합니다 (v2.1.325)**: 변경 로그에 따르면 이제 격리된 워크트리 세션이나 에이전트에서는 `git bisect run`, `git maintenance register|start`, `scalar`의 설정 명령어가 거부되며, 여전히 사용할 수 있는 작업이 안내됩니다. 워크트리 문서에는 아직 이 내용이 나와 있지 않습니다.
 
 ### 자동 정리
 
@@ -2140,7 +2149,7 @@ v2.1.157부터 Claude가 관리하는 워크트리는 에이전트가 작업을 
 
 ### 샌드박싱 활성화
 
-**슬래시 명령어** (이 프로젝트의 `.claude/settings.local.json`에 선택 사항 저장):
+**슬래시 명령어** (**Mode** 탭에서 자동 허용(auto-allow) 또는 일반 권한(regular permissions)을 선택; 이 프로젝트의 `.claude/settings.local.json`에 선택 사항 저장):
 ```text
 /sandbox
 ```
@@ -2154,12 +2163,17 @@ claude --settings '{"sandbox": {"enabled": true}}'
 
 > `claude --sandbox` / `--no-sandbox` 플래그는 없습니다. v2.1.300부터 `claude remote-control`에 이 플래그를 전달하면 오류와 함께 종료됩니다.
 
+> **샌드박스를 켜도 더 이상 프롬프트를 건너뛰지 않습니다 (설정 참조 기준 v2.1.324부터; 변경 로그는 v2.1.325에 기재)**: `sandbox.autoAllowBashIfSandboxed`의 기본값이 이제 `false`이므로, 샌드박스 처리된 Bash 명령어는 일반 권한 흐름을 거치며 허용 규칙과 권한 모드가 결정합니다. `/sandbox`의 **Mode** 탭은 이를 일반 권한(regular permissions) 모드라고 부르며, 위의 설정 파일 및 세션별 예시는 이 모드로 시작합니다. 권한 프롬프트 없이 샌드박스 처리된 명령어를 실행하려면(자동 허용 모드), `sandbox` 블록에 `"autoAllowBashIfSandboxed": true`도 설정하십시오. 예: `claude --settings '{"sandbox": {"enabled": true, "autoAllowBashIfSandboxed": true}}'`. 관리형 설정에서는 가장 높은 순위의 관리형 소스의 `sandbox` 블록에 추가하십시오.
+>
+> 자동 허용에도 여전히 제한이 있습니다. 샌드박스에서 실행할 수 없는 명령어는 일반 권한 흐름을 거칩니다. `deny` 규칙과 `Bash(git push *)` 같은 내용 범위 `ask` 규칙은 계속 적용되지만, 단독 `Bash` ask 규칙은 샌드박스 처리된 명령어에 대해 건너뜁니다(계획 모드에서는 예외). 중요 경로(critical path)를 대상으로 하는 `rm` 또는 `rmdir`은 일반 권한 흐름을 거칩니다. Monitor 도구 명령어는 자동으로 승인되지 않습니다. 그리고 `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB`는 자동 허용을 끕니다. `FOO=bar npm test`, `make CC=clang`, `eval "ls"` 같은 일부 샌드박스 처리된 명령어도 일반 권한 흐름을 거치며, 이때 허용 규칙과 권한 모드가 결정합니다. 계획 모드에서는 자동 허용이 승인 범위를 넓히지 않습니다. 전체 목록은 [Auto-allow mode](https://code.claude.com/docs/en/sandboxing#auto-allow-mode)를 참고하십시오.
+
 ### 구성 설정
 
 | 설정 | 설명 |
 |---------|-------------|
 | `sandbox.enabled` | 샌드박싱 활성화 또는 비활성화 |
-| `sandbox.failIfUnavailable` | 샌드박싱을 활성화할 수 없는 경우 실패 |
+| `sandbox.failIfUnavailable` | 샌드박싱을 활성화할 수 없는 경우 실패. 웹의 Claude Code, 클라우드 예약 작업, Cowork 클라우드 세션은 이 설정이 있어도 시작됩니다(v2.1.325). 호스팅된 컨테이너에는 명령어 샌드박스가 없기 때문입니다. 변경 로그에 이 내용이 추가되었으며, 설정 참조에는 아직 나와 있지 않습니다 |
+| `sandbox.autoAllowBashIfSandboxed` | 권한 프롬프트 없이 샌드박스 처리된 Bash 명령어를 실행합니다(자동 허용 모드). 설정 참조 기준 v2.1.324부터 기본값 `false`(변경 로그는 v2.1.325에 기재)이므로, 샌드박스 처리된 명령어는 허용 규칙과 권한 모드를 거칩니다. `true`일 때도 여전히 확인을 요청하는 경우는 위의 참고를 확인하십시오 |
 | `sandbox.filesystem.allowWrite` | 쓰기 액세스 허용 경로 |
 | `sandbox.filesystem.allowRead` | 읽기 액세스 허용 경로 |
 | `sandbox.filesystem.denyRead` | 읽기 액세스 거부 경로 |
@@ -2261,6 +2275,7 @@ v2.1.221 이전에는 `sandbox.credentials`가 자격 증명 파일을 `deny`할
 - Bash 명령어는 제한된 파일 시스템 액세스를 가진 샌드박스 환경에서 실행됩니다.
 - 의도치 않은 외부 연결을 방지하기 위해 네트워크 액세스를 격리할 수 있습니다.
 - 심층 방어를 위해 권한 규칙과 함께 작동합니다.
+- 샌드박스 처리된 쓰기는 실행 폴더에서와 마찬가지로 추가된 디렉터리에서도 `.claude` 설정, 스킬, 에이전트, 명령어, 훅에 대해 거부됩니다(v2.1.325; 변경 로그에 이 내용이 추가되었으며, 샌드박싱 문서의 보호 경로 목록에는 아직 추가된 디렉터리가 명시되어 있지 않습니다).
 - macOS에서는 Seatbelt가 샌드박스 프록시로 가는 연결을 제외한 모든 네트워크 연결을 차단합니다. `sandbox.enableWeakerNetworkIsolation`은 이 격리를 **약화**하며, MITM `httpProxyPort` 프록시 뒤의 Go CLI 같은 도구에만 사용합니다
 
 ### 사용 사례
@@ -2447,7 +2462,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 
 # 사고 구성
 export MAX_THINKING_TOKENS=16000
-export CLAUDE_CODE_EFFORT_LEVEL=high   # low, medium, high, xhigh (Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7), or max — default is high on Opus 5 and Opus 4.8 (supported on Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6)
+export CLAUDE_CODE_EFFORT_LEVEL=high   # low, medium, high, xhigh (Fable models, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8/4.7), or max — default is high on Opus 5 and Opus 4.8 (supported on Fable models, Opus 5.5, Sonnet 5.5, Haiku 5.5, Opus 5, Sonnet 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6)
 
 # 기능 토글
 export CLAUDE_CODE_DISABLE_AUTO_MEMORY=1    # 자동 메모리 비활성화 (자동 메모리 파일을 만들거나 로드하지 않음)
@@ -2532,7 +2547,7 @@ export CLAUDE_CODE_GZIP_REQUEST_BODIES=0                    # (v2.1.300) api.ant
 export CLAUDE_CODE_ARTIFACT_PUBLISH_EDITS=0                 # (v2.1.300) 게시 중 편집 대신, 파일 도구로 아티팩트 파일을 편집한 뒤 별도 단계로 게시.
 
 # 새 변수 (v2.1.301-v2.1.302)
-export CLAUDE_CODE_AUTO_MODE_MODEL=claude-sonnet-4-6  # 클라이언트 측 자동 모드 분류기 모델 (v2.1.302); Opus 5, Sonnet 5.5, Opus 5.5 또는 정책에서 제외한 모델에는 무시됨
+export CLAUDE_CODE_AUTO_MODE_MODEL=claude-sonnet-4-6  # 클라이언트 측 자동 모드 분류기 모델 (v2.1.302); Opus 5, Sonnet 5.5, Opus 5.5 또는 정책에서 제외한 모델에는 무시됨; v2.1.323부터 서드파티 제공자의 Claude Desktop 세션용 관리형 설정에서 작동 (Claude Desktop에 해당 버전이 포함되면 적용됨)
 export CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS=3600000  # 먼 사용 한도 재설정을 기다리지 않고 중지 (v2.1.301)
 
 # 새 변수 (v2.1.304-v2.1.310) — 실행하는 셸에서 설정
@@ -2745,8 +2760,8 @@ Claude Code 및 관련 기능에 대한 자세한 정보는 다음을 참조하�
 
 ---
 
-**최종 업데이트**: 2026년 10월 26일
-**Claude Code 버전**: 2.1.310
+**최종 업데이트**: 2026년 11월 14일
+**Claude Code 버전**: 2.1.325
 **출처**:
 - https://code.claude.com/docs/en/output-styles
 - https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md
@@ -2825,4 +2840,19 @@ Claude Code 및 관련 기능에 대한 자세한 정보는 다음을 참조하�
 - https://code.claude.com/docs/en/auto-mode-config#generate-environment-entries-with-auto-mode-setup
 - https://code.claude.com/docs/en/remote-control#requirements
 - https://code.claude.com/docs/en/cli-reference#cli-flags
-**호환 모델**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+- https://code.claude.com/docs/en/scheduled-tasks#seven-day-expiry
+- https://code.claude.com/docs/en/scheduled-tasks#jitter
+- https://code.claude.com/docs/en/scheduled-tasks#limitations
+- https://code.claude.com/docs/en/model-config#subagents-switch-or-fail-without-asking
+- https://code.claude.com/docs/en/changelog#2-1-318
+- https://code.claude.com/docs/en/tools-reference#time-limit-for-background-commands
+- https://code.claude.com/docs/en/changelog#2-1-321
+- https://code.claude.com/docs/en/changelog#2-1-323
+- https://code.claude.com/docs/en/settings-reference#sandbox-autoallowbashifsandboxed
+- https://code.claude.com/docs/en/sandboxing#auto-allow-mode
+- https://code.claude.com/docs/en/changelog#2-1-325
+- https://code.claude.com/docs/en/interactive-mode#prompt-suggestions
+- https://code.claude.com/docs/en/vs-code#use-or-turn-off-suggested-prompts
+- https://code.claude.com/docs/en/settings-reference#promptsuggestionenabled
+- https://code.claude.com/docs/en/remote-control#what-connected-devices-see
+**호환 모델**: Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 5.5, Claude Haiku 4.5
