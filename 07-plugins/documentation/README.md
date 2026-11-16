@@ -18,16 +18,25 @@ Comprehensive documentation generation and maintenance for your project.
 ## Installation
 
 ```bash
-/plugin install documentation
+claude --plugin-dir ./07-plugins/documentation
+```
+
+Check the plugin before you load it:
+
+```bash
+claude plugin validate ./07-plugins/documentation
 ```
 
 ## What's Included
 
 ### Slash Commands
-- `/generate-api-docs` - Generate API documentation
-- `/generate-readme` - Create or update README
-- `/sync-docs` - Sync docs with code changes
-- `/validate-docs` - Validate documentation
+
+Plugin commands are namespaced with the plugin `name` from `plugin.json`:
+
+- `/documentation:generate-api-docs` - Generate API documentation
+- `/documentation:generate-readme` - Create or update README
+- `/documentation:sync-docs` - Sync docs with code changes
+- `/documentation:validate-docs` - Validate documentation
 
 ### Subagents
 - `api-documenter` - API documentation specialist
@@ -40,39 +49,40 @@ Comprehensive documentation generation and maintenance for your project.
 - `adr-template.md` - Architecture Decision Record template
 
 ### MCP Servers
-- GitHub integration for documentation syncing
+
+`.mcp.json` declares one server, `github`: GitHub's official MCP server (`ghcr.io/github/github-mcp-server`), run with Docker in read-only mode. The image is pinned to the [v2.1.0 release](https://github.com/github/github-mcp-server/releases/tag/v2.1.0); change the tag in `.mcp.json` to upgrade. It shows up as `plugin:documentation:github` in `/mcp`.
 
 ## Usage
 
 ### Generate API Documentation
-```
-/generate-api-docs
+```text
+/documentation:generate-api-docs
 ```
 
 ### Create README
-```
-/generate-readme
+```text
+/documentation:generate-readme
 ```
 
 ### Sync Documentation
-```
-/sync-docs
+```text
+/documentation:sync-docs
 ```
 
 ### Validate Documentation
-```
-/validate-docs
+```text
+/documentation:validate-docs
 ```
 
 ## Requirements
 
-- Claude Code 1.0+
-- GitHub access (optional)
+- Claude Code 2.1+
+- Docker and a GitHub personal access token (optional, for the GitHub MCP server)
 
 ## Example Workflow
 
-```
-User: /generate-api-docs
+```text
+User: /documentation:generate-api-docs
 
 Claude:
 1. Scans all API endpoints in /src/api/
@@ -110,6 +120,8 @@ Set up GitHub token for documentation syncing:
 export GITHUB_TOKEN="your_github_token"
 ```
 
+`.mcp.json` passes it to the server as `GITHUB_PERSONAL_ACCESS_TOKEN`, the variable the server reads. Run `/mcp` to check that `plugin:documentation:github` is connected. Without a token the commands still work on local files.
+
 ## Best Practices
 
 - Keep documentation close to code
@@ -117,3 +129,16 @@ export GITHUB_TOKEN="your_github_token"
 - Include practical examples
 - Validate regularly
 - Use templates for consistency
+
+---
+
+**Last Updated**: October 18, 2026
+**Claude Code Version**: 2.1.302
+**Sources**:
+- https://code.claude.com/docs/en/plugins
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
+- https://code.claude.com/docs/en/model-config
+- https://code.claude.com/docs/en/plugins/cli-reference
+- https://code.claude.com/docs/en/plugins/install
+**Compatible Models**: Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 5.5, Claude Haiku 4.5
